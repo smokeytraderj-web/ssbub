@@ -730,7 +730,7 @@
 /* Schedule and fixture data ship with the page. Personal tasks, notes, links,
    tickers and settings remain in this browser's localStorage. */
 
-const TODAY = new Date(2026, 7, 31); // Aug 31 2026, matches the day this was built
+const TODAY = new Date(); // live date, updates each time the page loads
 
 // real recurring weekly schedule, from the fall term calendar. Repeats every
 // Mon–Fri for the semester; not tied to specific dates.
@@ -933,7 +933,7 @@ function escapeHtml(s){
 }
 
 /* ===================== RECAP (§ I) ===================== */
-function isoOf(d){ return d.toISOString().slice(0,10); }
+function isoOf(d){ const p=n=>String(n).padStart(2,'0'); return d.getFullYear()+'-'+p(d.getMonth()+1)+'-'+p(d.getDate()); } // local date, not UTC
 
 function renderRecap(){
   const todayIso = isoOf(TODAY);
